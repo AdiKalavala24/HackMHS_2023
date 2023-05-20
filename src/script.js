@@ -1,9 +1,7 @@
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
     const url = document.getElementById("linkInput").value;
-    const data_co2=document.getElementsById(".data-co2-grams");
-    const energy=document.getElementById(".energy-use");
-    const percentile=document.getElementById(".percentile");
+   
     // Send an HTTP GET request to the URL using fetch()
     //const proxyUrl = `https://cors-anywhere.herokuapp.com/${url_important}`;
     
@@ -14,11 +12,11 @@ document.querySelector('form').addEventListener('submit', function(event) {
         console.log(htmlContent);
         const jsondata=JSON.parse(htmlContent);
         const grams=jsondata.statistics.co2.grid.grams;
-        const energy=jsondata.statistics.energy;
-        const percentile=grams/0.042;
-        data_co2.innerHTML()=grams;
-        energy.innerHTML()=energy;
-        percentile.innerHTML()=`Your cleanliness is in the ${percentile}% of all websites`
+        const energy_s=jsondata.statistics.energy;
+        const percentile_s=(grams/0.042)*100;
+        document.getElementById("data-co2-grams").innerText=`Grams ${grams.toFixed(4)}`
+        document.getElementById("energy-use").innerText=`Enerft:${energy_s.toFixed(4)}`
+        document.getElementById("percentile").innerText=`Your cleanliness is in the ${percentile_s}`;
       })
       
 
